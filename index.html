@@ -92,10 +92,66 @@
             display: block;
         }
 
+        /* --- DASHBOARD & HOVER EFFECTS (SEITE 4) --- */
+        .dashboard-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;
+        }
+        .stack-container {
+            position: relative; width: 100%; height: 350px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+        }
+        .doc-card {
+            width: 170px; height: 240px;
+            background: white; border: 1px solid #ddd;
+            position: absolute;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.9s ease-out;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .cover-card { align-items: center; justify-content: center; text-align: center; padding: 10px; background: #fff; }
+        .cover-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #886E4C; }
+        .doc-title { font-size: 13px; font-weight: bold; margin-top: 10px; color: #004d55; text-transform: uppercase; }
+        .doc-icon { font-size: 35px; color: #886E4C; margin-bottom: 5px; }
+
+        /* Preview Styles */
+        .preview-header { height: 40px; display: flex; align-items: center; padding: 0 10px; font-size: 10px; font-weight: bold; color: white; text-transform: uppercase; letter-spacing: 1px;}
+        .preview-body { padding: 15px 10px; flex-grow: 1; }
+        .p-title { font-size: 11px; font-weight: bold; color: #333; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 4px;}
+        .p-line { height: 4px; background: #eee; margin-bottom: 6px; border-radius: 2px; }
+        .p-line.short { width: 60%; }
+        .p-line.medium { width: 85%; }
+
+        /* Hover Kaskade links/rechts zur Mitte */
+        .stack-left .card-1 { z-index: 4; transform: rotate(-2deg); }
+        .stack-left .card-2 { z-index: 3; transform: rotate(1deg) translate(2px, 2px); }
+        .stack-left .card-3 { z-index: 2; transform: rotate(-1deg) translate(4px, 4px); }
+        .stack-left .card-4 { z-index: 1; transform: rotate(2deg) translate(6px, 6px); }
+
+        .stack-left:hover .card-1 { transform: translate(-40px, -30px) rotate(-10deg); z-index: 1; }
+        .stack-left:hover .card-2 { transform: translate(30px, 10px) rotate(0deg); z-index: 2; }
+        .stack-left:hover .card-3 { transform: translate(100px, 50px) rotate(10deg); z-index: 3; }
+        .stack-left:hover .card-4 { transform: translate(170px, 90px) rotate(20deg) scale(1.05); z-index: 4; }
+
+        .stack-right .card-1 { z-index: 4; transform: rotate(2deg); }
+        .stack-right .card-2 { z-index: 3; transform: rotate(-1deg) translate(-2px, 2px); }
+        .stack-right .card-3 { z-index: 2; transform: rotate(1deg) translate(-4px, 4px); }
+        .stack-right .card-4 { z-index: 1; transform: rotate(-2deg) translate(-6px, 6px); }
+
+        .stack-right:hover .card-1 { transform: translate(40px, -30px) rotate(10deg); z-index: 1; }
+        .stack-right:hover .card-2 { transform: translate(-30px, 10px) rotate(0deg); z-index: 2; }
+        .stack-right:hover .card-3 { transform: translate(-100px, 50px) rotate(-10deg); z-index: 3; }
+        .stack-right:hover .card-4 { transform: translate(-170px, 90px) rotate(-20deg) scale(1.05); z-index: 4; }
+
+        .stack-label { position: absolute; bottom: 0; font-weight: bold; color: #004d55; text-align: center; background: #F9F8F6; padding: 10px 25px; border-radius: 20px; border: 1px solid #886E4C; z-index: 10; pointer-events: none; }
+
         /* --- DRUCK CSS --- */
         @media print {
             body { background-color: #ffffff; margin: 0; }
             .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; page-break-after: always; break-after: page; }
+            #digital-dashboard { display: none !important; }
         }
     </style>
 </head>
@@ -123,9 +179,10 @@
 
         <div class="content">
             <div class="letter-recipient">
-                <strong>NUMA Group</strong><br>
-                Recruiting Team<br>
-                Berlin
+                <strong>Numa Group SE</strong><br>
+                General<br>
+                Potsdamer Str. 68a<br>
+                10785 Berlin
             </div>
 
             <div class="letter-date">Bad Saarow, 25. Februar 2026</div>
@@ -148,11 +205,11 @@
             </div>
             
             <div style="margin-top:40px; font-size:13px; color:#886E4C; font-weight:bold;">
-                &#10148; Anlagen: Lebenslauf, Zeugnisse & Zertifikate
+                &#10148; Anlagen: Lebenslauf, Zeugnisse & Zertifikate | Digitale Mappe: <a href="https://smartarts-live.github.io/Numa/" target="_blank" style="color:#886E4C; text-decoration:underline;">smartarts-live.github.io/Numa/</a>
             </div>
         </div>
 
-        <div class="footer">Constantin Paul &bull; Seite 1 von 3</div>
+        <div class="footer">Constantin Paul &bull; Seite 1 von 4</div>
     </div>
 
     <div class="page">
@@ -234,7 +291,7 @@
                 </tr>
             </table>
         </div>
-        <div class="footer">Constantin Paul &bull; Seite 2 von 3</div>
+        <div class="footer">Constantin Paul &bull; Seite 2 von 4</div>
     </div>
 
     <div class="page">
@@ -343,7 +400,59 @@
                 </tr>
             </table>
         </div>
-        <div class="footer">Constantin Paul &bull; Seite 3 von 3</div>
+        <div class="footer">Constantin Paul &bull; Seite 3 von 4</div>
+    </div>
+
+    <div class="page" id="digital-dashboard" style="background-color: #f0f0f0;">
+        <div class="header">
+            <span class="header-name">Anlagen Dashboard</span>
+            <div class="header-text" style="float:right; margin-top:5px;">Digital & Interaktiv</div>
+        </div>
+        <div class="content">
+            <div style="text-align:center; margin-bottom:10px;">
+                <h1>Ihre Unterlagen</h1>
+                <p>Fahren Sie mit der Maus über die Stapel, um die Dokumente aufzufächern.<br>Ein Klick öffnet die vollständige PDF-Datei.</p>
+            </div>
+            <div class="dashboard-grid">
+                <a href="assets/Arbeitszeugnisse.pdf" target="_blank" class="stack-container stack-left">
+                    <div class="doc-card card-4">
+                        <div class="preview-header" style="background:#5C8727;">UGOLF / Golf Club</div>
+                        <div class="preview-body"><div class="p-title">Arbeitszeugnis</div><div class="p-line medium"></div><div class="p-line"></div><div class="p-line short"></div></div>
+                    </div>
+                    <div class="doc-card card-3">
+                        <div class="preview-header" style="background:#00B0F0;">BONAVA</div>
+                        <div class="preview-body"><div class="p-title">Arbeitszeugnis</div><div class="p-line"></div><div class="p-line medium"></div><div class="p-line short"></div></div>
+                    </div>
+                    <div class="doc-card card-2">
+                        <div class="preview-header" style="background:#004d55;">a-ja Resorts</div>
+                        <div class="preview-body"><div class="p-title">Zeugnis</div><div class="p-line medium"></div><div class="p-line short"></div><div class="p-line"></div></div>
+                    </div>
+                    <div class="doc-card card-1 cover-card">
+                        <div class="doc-icon">&#128196;</div><div class="doc-title">Arbeits-<br>Zeugnisse</div>
+                    </div>
+                    <div class="stack-label">Arbeitszeugnisse öffnen</div>
+                </a>
+                <a href="assets/Zertifikate.pdf" target="_blank" class="stack-container stack-right">
+                    <div class="doc-card card-4">
+                        <div class="preview-header" style="background:#D8232A;">diavendo</div>
+                        <div class="preview-body"><div class="p-title">Leadership I - III</div><div class="p-line short"></div><div class="p-line"></div></div>
+                    </div>
+                    <div class="doc-card card-3">
+                        <div class="preview-header" style="background:#E2007A;">a-ja Campus</div>
+                        <div class="preview-body"><div class="p-title">Talent & Culture</div><div class="p-line medium"></div><div class="p-line short"></div></div>
+                    </div>
+                    <div class="doc-card card-2">
+                        <div class="preview-header" style="background:#333333;">IFH Academy</div>
+                        <div class="preview-body"><div class="p-title">Lead my Team</div><div class="p-line"></div><div class="p-line medium"></div></div>
+                    </div>
+                    <div class="doc-card card-1 cover-card">
+                        <div class="doc-icon">&#127942;</div><div class="doc-title">Zertifikate &<br>Weiterbildung</div>
+                    </div>
+                    <div class="stack-label">Qualifikationen öffnen</div>
+                </a>
+            </div>
+        </div>
+        <div class="footer">Nur digital sichtbar. Wird beim Drucken ausgeblendet. &bull; Seite 4 von 4</div>
     </div>
 
 </body>
